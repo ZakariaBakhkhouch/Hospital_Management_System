@@ -1,0 +1,57 @@
+﻿@model IEnumerable<S.G.H.Models.Facture>
+
+@{
+    ViewBag.Title = "Factures";
+    ViewBag.Title_2 = "Liste des Factures :";
+    Layout = "_Layout";
+}
+<div class="table-responsive">
+    <form class="d-flex" asp-controller="Facture" asp-action="Search">
+        <input class="form-control me-2"  type="search" name="number" placeholder="Chercher un Facture par son Nombre" aria-label="Search" autocomplete="off">
+        <button class="btn btn-success" type="submit" >Chercher</button>
+    </form>
+    <br />
+    <br />
+    <a asp-controller="Facture" asp-action="Create" class="btn btn-primary">Ajouter une Facture à un Patient</a>
+    <br />
+    <br />
+    <table class="table table-striped table-sm table-hover table-bordered border-dark">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Montant</th>
+                <th>Date Paiement</th>
+                <th>Type Paiement</th>
+                <th>Patient Matricule</th>
+                <th>Telecharger la Facture</th>
+            </tr>
+        </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @{
+                                string x = item.Montant.ToString() + " DH";  
+                            }
+                            @x
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DatePaiement)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypePaiement)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PatientMatricule)
+                        </td>
+                        <td>
+                            <a asp-controller="Facture" asp-action="Telecharger" asp-route-id="@item.Id" class="link-primary">Télécharger</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+</div>

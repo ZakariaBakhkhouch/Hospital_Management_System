@@ -1,0 +1,44 @@
+﻿@using S.G.H.Models
+@using S.G.H.Models.Repositories
+@model S.G.H.Models.Patient
+@using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Builder
+
+@inject IPatientRepository<Patient> _patientRepository 
+@inject IDocteurRepository<Docteur> _docteurRepository 
+@inject IChambreRepository<Chambre> _chambreRepository 
+
+@inject IOptions<RequestLocalizationOptions> locOptions
+@inject IViewLocalizer localizer
+
+@{
+	ViewBag.Title = @localizer["Accueille"];
+	Layout="_Layout";   
+}
+
+<h1>@localizer["Bienvenue"] :</h1>
+<br/><br/><br/>
+<div>
+    <div class="card text-white bg-primary mb-3" style="max-width: 25rem;height: 190px;float:left;">
+      <div class="card-body">
+        <h4 class="card-header">@localizer["Le Nombre Total de Patients à L'hôpital"] :</h4>
+	    <br />
+        <h1 class="card-text">@_patientRepository.GetPatientsList().Count @localizer["Patients"]</h1>
+      </div>
+    </div>
+    <div class="card text-white bg-success mb-3" style="max-width: 25rem;height: 190px;float:left;margin-left:15px;">
+      <div class="card-body">
+        <h4 class="card-header">@localizer["Le Nombre Total de Docteurs à L'hôpital"] :</h4>
+	    <br />
+        <h1 class="card-text">@_docteurRepository.GetDocteursList().Count @localizer["Docteurs"]</h1>
+      </div>
+    </div>
+    <div class="card text-white bg-danger mb-3" style="max-width: 25rem;height: 190px;float:left;margin-left:15px;">
+      <div class="card-body">
+        <h4 class="card-header">@localizer["Le Nombre total de Chambres Pleines à L'hôpital"] :</h4>
+	    <br />
+        <h1 class="card-text">@_chambreRepository.GetChambres().Count(a => a.Statu == "Indisponible")/@_chambreRepository.GetChambres().Count @localizer["Chambres"]</h1>
+      </div>
+    </div>
+</div>
+<div class="breaker" style="clear:both;"></div>

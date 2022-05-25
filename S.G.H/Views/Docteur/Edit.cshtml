@@ -1,0 +1,65 @@
+﻿@model S.G.H.ViewModel.PatientDocteurViewModel
+@inject IViewLocalizer localizer
+
+@{
+    ViewBag.Title = "Docteur - Modifier";
+    Layout = "_Layout";
+}
+
+<h4>@localizer["Modifier les informations de cette docteur"] :</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Matricule" class="control-label">@localizer["Matricule"] :</label>
+                <input asp-for="Matricule" readonly class="form-control" />
+                <span asp-validation-for="Matricule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label">@localizer["Nom Complet"] :</label>
+                <input asp-for="FullName" type="text" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Genre" class="control-label">@localizer["Genre"] :</label>
+                <select asp-for="Genre" type="text" class="form-select" >
+                    <option value="" disabled hidden selected >Choisir le Genre</option>
+                    <option value="Musculin" >Musculin</option>
+                    <option value="Feminin" >Feminin</option>
+                </select>
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Spécialité" class="control-label">@localizer["Spécialité"] :</label>
+                <input asp-for="Spécialité" type="text" class="form-control" />
+                <span asp-validation-for="Spécialité" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Photo" class="control-label">@localizer["Photo"]</label>
+                <img src="~/Uploads/@Model.Photo"  class="form-control" style="width:25%" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="File" class="control-label">@localizer["Fichier"]</label>
+                <input asp-for="File" type="file"  class="form-control" />
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="@localizer["Sauvegarder"]" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-outline-info">@localizer["Annuler"]</a>
+            </div>
+            <br />
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

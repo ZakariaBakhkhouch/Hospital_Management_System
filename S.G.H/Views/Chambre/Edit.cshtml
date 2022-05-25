@@ -1,0 +1,58 @@
+﻿@model S.G.H.ViewModel.PatientChambreViewModel
+@inject IViewLocalizer localizer
+@{
+    ViewBag.Title = "Edit - Chambre";
+    Layout = "_Layout";
+}
+<h4>@localizer["Modifier le statu de cette Chambre"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" asp-controller="Chambre">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label">@localizer["Nombre de Chambre"] :</label>
+                <input asp-for="Nombre" class="form-control" readonly/>
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Type" class="control-label">@localizer["Type de Chambre"] :</label>
+                <input asp-for="Type" class="form-control" readonly/>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Statu" class="control-label">@localizer["Statut"] :</label>
+                <select asp-for="Statu" class="form-select" >
+                    <option value="Disponible">Disponible </option>
+                    <option value="Indisponible">Indisponible </option>
+                </select>
+                <span asp-validation-for="Statu" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Matricule" class="control-label">@localizer["Ajouter un Patient à cette Chambre"] :</label>
+                <select asp-for="Matricule" class="form-select" 
+                    asp-items="@(new SelectList(Model.patients ,"Matricule" , "Matricule"))">
+                    <option value="0" selected hidden disabled>Selectioner un patient</option>
+                </select>
+                <span asp-validation-for="Matricule" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <h5>@localizer["Voulez-vous vider la Chambre"] ?</h5>
+                <input type="submit" value="@localizer["le rendre vide"]" class="btn btn-danger" asp-action="Vide" />
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="@localizer["Sauvegarder"]" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-outline-primary">@localizer["Annuler"]</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

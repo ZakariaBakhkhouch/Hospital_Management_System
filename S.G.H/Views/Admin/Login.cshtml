@@ -1,0 +1,52 @@
+﻿@model S.G.H.Models.AdminLogin
+
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Bienvenu</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link type="image/x-icon" rel="icon" href="~/img/hospital.png" />
+	<link rel="stylesheet" href="/login-form-20/css/style.css">
+</head>
+<body class="img js-fullheight" style="background-image: url(/login-form-20/images/1.jpg);">
+	<section class="ftco-section" style="margin-right:40%">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Se connecter</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+					<form class="signin-form" method="post">
+						<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		      			<div class="form-group">
+		      				<input type="email" asp-for="Email" class="form-control" placeholder="Email de Bureau" autocomplete="on" required oninvalid="this.setCustomValidity('Champ Email est Vide')" oninput="this.setCustomValidity('')">
+							<span asp-validation-for="Email" class="text-danger"></span>
+		      			</div>
+						<div class="form-group">
+							<input id="password-field" type="password" asp-for="Password" class="form-control" placeholder="Mot de Passe" required oninvalid="this.setCustomValidity('Champ Mot de Pass est Vide')" oninput="this.setCustomValidity('')">
+							<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+							<span asp-validation-for="Password" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<input type="submit" value="Se connecter" asp-action="Login" class="form-control btn btn-primary submit px-3" />
+						</div>
+					</form>
+				</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="/login-form-20/js/jquery.min.js"></script>
+	<script src="/login-form-20/js/popper.js"></script>
+	<script src="/login-form-20/js/bootstrap.min.js"></script>
+	<script src="/login-form-20/js/main.js"></script>
+</body>
+</html>

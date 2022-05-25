@@ -1,0 +1,56 @@
+﻿@model IEnumerable<S.G.H.Models.Docteur>
+@inject IViewLocalizer localizer
+
+@{
+    ViewBag.Title = "Docteur";
+    Layout = "_Layout";
+}
+<h1>@localizer["Liste des Docteurs"] :</h1>
+<div class="table-responsive">
+    <br />
+    <form class="d-flex" asp-controller="Docteur" asp-action="Search">
+        <input class="form-control me-2"  type="search" name="fullname" placeholder="@localizer["Chercher un Docteur par son Nom de Famille"]" aria-label="Search" autocomplete="off">
+        <button class="btn btn-success" type="submit" >@localizer["Chercher"]</button>
+    </form>
+    <br />
+    <a asp-action="Create" class="btn btn-primary">@localizer["Ajouter Nouveau Docteur"]</a>
+    <br />
+    <br />
+    <table class="table table-striped table-sm table-hover table-bordered border-dark">
+        <thead class="table-dark">
+            <tr>
+                <th>@localizer["Matricule"]</th>
+                <th>@localizer["Nom Complet"]</th>
+                <th>@localizer["Genre"]</th>
+                <th>@localizer["Spécialité"]</th>
+                <th>@localizer["Photo"]</th>
+                <th>@localizer["Modifications"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Matricule)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Genre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Spécialité)
+                    </td>
+                    <td>
+                        <img src="~/Uploads/@item.Photo" class="img-thumbnail" style="width:80px;" asp-append-version="true">
+                    </td>
+                    <td>
+                        <a asp-controller="Docteur" asp-action="Edit"   asp-route-id="@item.Matricule" class="btn btn-secondary">@localizer["Modifier"]</a>
+                        <a asp-controller="Docteur" asp-action="Delete" asp-route-id="@item.Matricule" class="btn btn-danger">@localizer["Supprimer"]</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

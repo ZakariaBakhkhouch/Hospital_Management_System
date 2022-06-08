@@ -161,7 +161,7 @@ namespace S.G.H.Controllers
             gfx.DrawString("Nom de Patient : " + facture.Patient.Nom + " " + facture.Patient.Prenom, font1, XBrushes.Black,20,100, XStringFormats.Default);
             gfx.DrawString("Date de paiement : " + facture.DatePaiement, font1, XBrushes.Black, 20, 130, XStringFormats.Default);
             gfx.DrawString("Type de Paiement : " + facture.TypePaiement, font1, XBrushes.Black, 20, 160, XStringFormats.Default);
-            gfx.DrawString("Montant Total : "    + facture.Montant     , font1, XBrushes.Black, 20, 190, XStringFormats.Default);
+            gfx.DrawString("Montant Total : "    + facture.Montant  + " DH"   , font1, XBrushes.Black, 20, 190, XStringFormats.Default);
 
             //Save the PDF document to stream
             MemoryStream stream = new MemoryStream();

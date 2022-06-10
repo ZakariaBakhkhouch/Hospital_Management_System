@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
-@model S.G.H.ViewModel.PatientDocteurViewModel
+﻿@model S.G.H.ViewModel.PatientDocteurViewModel
 @inject IViewLocalizer localizer
 @{
     ViewBag.Title = "Edit - Patient";
@@ -66,6 +65,12 @@
                     <span asp-validation-for="Adresse" class="text-danger"></span>
                 </div>
             </div>
+            <br />
+            <div class="form-group">
+                    <label asp-for="DateEntrée" class="control-label">@localizer["Date d'entrée"] :</label>
+                    <input asp-for="DateEntrée" class="form-control" type="date" required style="width:200%" oninvalid="this.setCustomValidity('Date d'entrée est obligatoire')" oninput="this.setCustomValidity('')"/>
+                    <span asp-validation-for="DateEntrée" class="text-danger"></span>
+                </div>
             <br />
             <div style="display: grid;grid-template-columns: 1fr 1fr;grid-gap: 200px;">
                <div class="form-group">

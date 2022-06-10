@@ -11,5 +11,8 @@ namespace S.G.H.Models.Repositories
         void Add(TEntity entity);    
         
         List<TEntity> Search(string number);
+
+        void Update(TEntity entity, int id);
+
     }
 }

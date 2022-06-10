@@ -36,6 +36,12 @@
             </div>
             <br />
             <div class="form-group">
+                <label asp-for="DateDépart" class="control-label">@localizer["Date Départ"] :</label>
+                <input asp-for="DateDépart" class="form-control" required oninvalid="this.setCustomValidity('La Date Départ est obligatoire')" oninput="this.setCustomValidity('')" autocomplete="off" />
+                <span asp-validation-for="DateDépart" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
                 <label asp-for="PatientMatricule" class="control-label">@localizer["Patient Matricule"] :</label>
                 <select asp-for="PatientMatricule" class="form-select" 
                 asp-items="@(new SelectList(Model.Patients ,"Matricule" , "Matricule"))" required oninvalid="this.setCustomValidity('Le Patient est obligatoire')" oninput="this.setCustomValidity('')" autocomplete="off">

@@ -132,6 +132,9 @@
   <data name="Chercher un Patient par son Nom de Famille" xml:space="preserve">
     <value>ابحث عن مريض حسب اسم العائلة</value>
   </data>
+  <data name="Date d'entrée" xml:space="preserve">
+    <value>a</value>
+  </data>
   <data name="DateNaissance" xml:space="preserve">
     <value>تاريخ الميلاد</value>
   </data>

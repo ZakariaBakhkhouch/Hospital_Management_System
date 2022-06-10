@@ -126,6 +126,9 @@
   <data name="Annuler" xml:space="preserve">
     <value>الغاء</value>
   </data>
+  <data name="Date Départ" xml:space="preserve">
+    <value>تاريخ المغادرة</value>
+  </data>
   <data name="Date Paiement" xml:space="preserve">
     <value>تاريخ الدفع</value>
   </data>

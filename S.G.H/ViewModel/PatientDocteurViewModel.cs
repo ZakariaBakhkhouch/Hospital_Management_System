@@ -15,6 +15,8 @@ namespace S.G.H.ViewModel
         public string Email { get; set; }
         public string Telephone { get; set; }
         public string Adresse { get; set; }
+        public string DateEntrée { get; set; }
+
 
 
         // docteur classe

@@ -26,7 +26,8 @@
                 <th>@localizer["DateNaissance"]</th>
                 <th>@localizer["Email"]</th>
                 <th>@localizer["Telephone"]</th>
-                <th>@localizer["Adresse"]</th>
+                <th>@localizer["Adresse"]</th> 
+                <th>@localizer["Date d'entrée"]</th>
                 <th>@localizer["Docteur"]</th>
                 <th>@localizer["Modifications"]</th>
             </tr>
@@ -42,6 +43,7 @@
                     <td>@item.Email</td>
                     <td>@item.Telephone</td>
                     <td>@item.Adresse</td>
+                    <td>@item.DateEntrée</td>
                     @if(item.SonDocteur == null)
                     {
                         <td style="color:red">Pas de Docteur</td>
@@ -52,7 +54,7 @@
                     }
                     <td>
                         <a asp-action="Edit"   asp-route-id="@item.Matricule" class="btn btn-secondary">@localizer["Modifier"]</a> 
-                        <a asp-action="Delete" asp-route-id="@item.Matricule" data-id="@item.Matricule" class="btn btn-danger js-delete">@localizer["Supprimer"]</a> 
+                        <a asp-action="Delete" asp-route-id="@item.Matricule" data-id="@item.Matricule" class="btn btn-danger">@localizer["Supprimer"]</a> 
                     </td>
                 </tr>
             }

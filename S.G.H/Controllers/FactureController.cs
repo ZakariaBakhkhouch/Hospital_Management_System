@@ -12,6 +12,11 @@ using Microsoft.CodeAnalysis;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
 using System.Diagnostics;
+using AutoMapper;
+using QRCoder;
+using System.Drawing;
+using System.Drawing.Imaging;
+
 
 namespace S.G.H.Controllers
 {
@@ -65,10 +70,62 @@ namespace S.G.H.Controllers
                     Montant = model.Montant,
                     DatePaiement = model.DatePaiement,
                     TypePaiement = model.TypePaiement,
+                    DateDépart = model.DateDépart,
                     Patient = patient,
                 };
 
                 _factureRepository.Add(facture);
+                return RedirectToAction(nameof(Index));
+                
+            }
+            
+            return View("Index");
+        }
+
+        
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var facture = _factureRepository.Find(id);
+
+            var patient = _patientRepository.Find(facture.PatientMatricule);
+
+            PatientFactureViewModel viewModel = new PatientFactureViewModel
+            {
+                Id = facture.Id,
+                Nombre = facture.Nombre,
+                Montant = facture.Montant,
+                DatePaiement = facture.DatePaiement,
+                TypePaiement = facture.TypePaiement,
+                DateDépart = facture.DateDépart,
+                PatientMatricule = facture.PatientMatricule,
+                Patients = _patientRepository.GetPatientsList().ToList()
+            };
+            return View("Edit", viewModel);
+        }
+
+
+
+        [HttpPost]
+        public IActionResult Edit(PatientFactureViewModel model)
+        {
+            var patient = _patientRepository.Find(model.PatientMatricule);
+
+            if (ModelState.IsValid)
+            {
+                Facture facture = new Facture
+                {
+                    Id = model.Id,
+                    Nombre = model.Nombre,
+                    Montant = model.Montant,
+                    DatePaiement = model.DatePaiement,
+                    TypePaiement = model.TypePaiement,
+                    DateDépart = model.DateDépart,
+                    Patient = patient,
+                };
+
+                _factureRepository.Update(facture,model.Id);
                 return RedirectToAction(nameof(Index));
                 
             }
@@ -156,6 +213,9 @@ namespace S.G.H.Controllers
             XFont font = new XFont("Verdana", 20, XFontStyle.Bold);
             XFont font1 = new XFont("Verdana", 15, XFontStyle.Regular);
 
+            XPoint xPoint = new XPoint(10, 10);
+
+           
             //Finally use XGraphics & font object to draw text in PDF Page
             gfx.DrawString("La Facture", font, XBrushes.Black,new XRect(0, 0, page.Width, page.Height), XStringFormats.TopCenter);
             gfx.DrawString("Nom de Patient : " + facture.Patient.Nom + " " + facture.Patient.Prenom, font1, XBrushes.Black,20,100, XStringFormats.Default);
@@ -174,6 +234,12 @@ namespace S.G.H.Controllers
             fileStreamResult.FileDownloadName = "Sample.pdf";
 
             return fileStreamResult;
+        }
+
+
+        public void TelechargerFacture_Xml()
+        {
+            
         }
     }
 }

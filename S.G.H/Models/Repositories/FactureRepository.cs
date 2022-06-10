@@ -53,5 +53,11 @@ namespace S.G.H.Models.Repositories
             }
             return result;
         }
+
+        public void Update(Facture newFacture, int id)
+        {
+            dbContext.Update(newFacture);
+            dbContext.SaveChanges();
+        }
     }
 }

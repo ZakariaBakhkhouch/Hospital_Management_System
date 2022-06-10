@@ -22,9 +22,11 @@
                 <th>@localizer["Nombre"]</th>
                 <th>@localizer["Montant"]</th>
                 <th>@localizer["Date Paiement"]</th>
-                <th>@localizer["Type Paiement"]</th>
+                <th>@localizer["Type Paiement"]</th> 
+                <th>@localizer["Date Départ"]</th>
                 <th>@localizer["Patient Matricule"]</th>
-                <th>@localizer["Telecharger la Facture"]</th>
+                <th>@localizer["Telecharger la Facture"]</th> 
+                <th>@localizer["Modification"]</th>
             </tr>
         </thead>
             <tbody>
@@ -46,11 +48,17 @@
                             @Html.DisplayFor(modelItem => item.TypePaiement)
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.DateDépart)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.PatientMatricule)
                         </td>
                         <td>
                             <a asp-controller="Facture" asp-action="Telecharger" asp-route-id="@item.Id" class="link-primary">@localizer["Télécharger"]</a>
-                        </td>
+                        </td> 
+                        <td>
+                            <a asp-controller="Facture" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">@localizer["Modifier"]</a>
+                        </td> 
                     </tr>
                 }
             </tbody>

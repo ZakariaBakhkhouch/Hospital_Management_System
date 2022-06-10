@@ -117,15 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Ajouter une Facture à un Patient" xml:space="preserve">
-    <value>أضف فاتورة لمريض</value>
-  </data>
-  <data name="Chercher" xml:space="preserve">
-    <value>بحث</value>
-  </data>
-  <data name="Chercher un Facture par son Nombre" xml:space="preserve">
-    <value>ابحث عن فاتورة حسب رقمها</value>
-  </data>
   <data name="Date Départ" xml:space="preserve">
     <value>تاريخ المغادرة</value>
   </data>
@@ -140,6 +131,9 @@
   </data>
   <data name="Modifier" xml:space="preserve">
     <value>تعديل</value>
+  </data>
+  <data name="Modifier les informations de cette Facture" xml:space="preserve">
+    <value>تعديل معلومات هذه الفاتورة</value>
   </data>
   <data name="Montant" xml:space="preserve">
     <value>المبلغ</value>

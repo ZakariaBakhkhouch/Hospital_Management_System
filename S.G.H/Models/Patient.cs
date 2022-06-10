@@ -37,6 +37,9 @@ namespace S.G.H.Models
 
         [Required]
         public string Adresse { get; set; }
+
+        [Required]
+        public string DateEntrée { get; set; }
         
         //-----------------------------------------------------------------------
         public int? DocteurMatricule { get; set; }

@@ -1,0 +1,71 @@
+﻿@model S.G.H.ViewModel.PatientFactureViewModel
+@inject IViewLocalizer localizer
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+
+<h4>@localizer["Modifier les informations de cette Facture"] :</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label">@localizer["Nombre"] :</label>
+                <input asp-for="Nombre" readonly class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Montant" class="control-label">@localizer["Montant"] :</label>
+                <input asp-for="Montant" class="form-control" />
+                <span asp-validation-for="Montant" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="DatePaiement" class="control-label">@localizer["Date Paiement"] :</label>
+                <input asp-for="DatePaiement" class="form-control" />
+                <span asp-validation-for="DatePaiement" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="TypePaiement" class="control-label">@localizer["Type Paiement"] :</label>
+                <select asp-for="TypePaiement" class="form-select" required oninvalid="this.setCustomValidity('Le Type de Payement est obligatoire')" oninput="this.setCustomValidity('')" autocomplete="off">
+                    <option value="" disabled hidden selected>Choisir le Type de Paiement</option>
+                    <option value="Espèces">En Espèce</option>
+                    <option value="Chèque">En Chèque</option>
+                    <option value="CréditCarte">Par carte de crédit</option>
+                    <option value="SansContact">Paiements sans Contact</option>
+                </select>
+                <span asp-validation-for="TypePaiement" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                 <label asp-for="PatientMatricule" class="control-label">@localizer["Patient Matricule"] :</label>
+                    <select asp-for="PatientMatricule" class="form-select" 
+                        asp-items="@(new SelectList(Model.Patients ,"Matricule" , "Matricule"))" style="width:200%" oninvalid="this.setCustomValidity('Le docteur est obligatoire')" oninput="this.setCustomValidity('')">
+                        @if(Model.PatientMatricule == 0)
+                        {
+                            <option value="" disabled selected hidden >Selectioner le Patient</option>
+                        }
+                    </select>
+                <span asp-validation-for="PatientMatricule" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="DateDépart" class="control-label">@localizer["Date Départ"] :</label>
+                <input asp-for="DateDépart" class="form-control" />
+                <span asp-validation-for="DateDépart" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                 <input type="submit" value="@localizer["Sauvegarder"]" class="btn btn-success" />
+                 <a asp-action="Index" class="btn btn-outline-primary">@localizer["Annuler"]</a>
+            </div>
+        </form>
+    </div>
+</div>
+

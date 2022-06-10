@@ -12,6 +12,7 @@ namespace S.G.H.ViewModel
         public DateTime? DatePaiement { get; set; }
         public string TypePaiement { get; set; }
         public int PatientMatricule { get; set; }
+        public DateTime? DateDépart { get; set; }
         public virtual Patient Patient { get; set; }
 
         // the new property
